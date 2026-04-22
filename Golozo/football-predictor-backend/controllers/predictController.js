@@ -1,31 +1,15 @@
-const mysql = require('mysql2');
-
-const db = mysql.createConnection({
-    host: process.env.MYSQLHOST || 'localhost',
-    user: process.env.MYSQLUSER || 'root',
-    password: process.env.MYSQLPASSWORD || '2468goku',
-    database: process.env.MYSQLDATABASE || 'GolozoDB',
-    port: process.env.MYSQLPORT || 3306
-});
-
-db.connect((err) => {
-    if (err) {
-        console.error('Database connection failed:', err);
-    } else {
-        console.log('Connected to MySQL!');
-    }
-});
+const fs = require('fs');
+const path = require('path');
 
 const getPrediction = (req, res) => {
-    const query = "SELECT team, opponent, date, predicted_target FROM matches WHERE venue_code = 1 AND date >= '2026-04-22' ORDER BY date ASC LIMIT 20";
-    db.query(query, (err, results) => {
-        if (err) {
-            console.error('Query error:', err);
-            res.status(500).json({ error: 'Database query failed' });
-        } else {
-            res.json(results);
-        }
-    });
+    try {
+        const dataPath = path.join(__dirname, '..', 'data.json');
+        const data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+        res.json(data);
+    } catch (err) {
+        console.error('Error reading data:', err);
+        res.status(500).json({ error: 'Failed to load data' });
+    }
 };
 
 module.exports = { getPrediction };
