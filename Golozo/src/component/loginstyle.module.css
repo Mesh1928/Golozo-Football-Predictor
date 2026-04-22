@@ -1,0 +1,209 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.loginbody {
+    background: linear-gradient(45deg, #2c3e50, #4a4e69, #232f34, #2b2d42, #8d99ae);
+    background-size: 500% 500%;
+    animation: gradientAnimation 15s ease infinite;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 100%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 0%; }
+    100% { background-position: 0% 50%; }
+}
+
+.loginbody::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+.logincontainer {
+    padding: 60px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.logincontainer::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #2c3e50, #4a4e69, #232f34, #2b2d42, #8d99ae);
+    background-size: 500% 500%;
+    animation: borderAnimation 15s ease infinite;
+    z-index: -1;
+}
+
+@keyframes borderAnimation {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 100%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 0%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+h2 {
+    margin-bottom: 30px;
+    color: white;
+    font-size: 2.5rem;
+}
+
+.word {
+    color: #FF7F50;
+}
+
+.loginform {
+    display: flex;
+    flex-direction: column;
+}
+
+.formgroup {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.formgroup label {
+    display: block;
+    margin-bottom: 5px;
+    color: #fafafa;
+    letter-spacing: 5px;
+}
+
+.formgroup input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1rem;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.formgroup input:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 2px solid darkgray;
+}
+
+.submit {
+    letter-spacing: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #626262;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.submit:hover {
+    background-color: coral;
+    transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        width: 90%;
+    }
+}
+
+.backbtn {
+    letter-spacing: 5px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: 0.2s;
+}
+
+.backbtn a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.backbtn a:hover {
+    color: #FF7F50;
+    transform: scale(1.05);
+}
+
+.reg {
+    font-size: x-small;
+    display: block;
+    margin-top: 20px;
+    color: #fafafa;
+    letter-spacing: 3px;
+}
+
+.reg a {
+    color: white;
+    transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.reg a:hover {
+    color: coral;
+    transform: scale(1.05);
+}
+
+.error {
+    opacity: 0;
+    color: coral;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    text-align: left;
+    letter-spacing: 2px;
+    animation: fadeIn 0.2s ease-in-out forwards;
+    animation-delay: 0.1s;
+}
+
+.inputError {
+    border: 2px solid coral;
+    background-color: rgba(255, 255, 255, 0.3);
+}
