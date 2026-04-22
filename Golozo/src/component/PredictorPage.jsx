@@ -15,7 +15,7 @@ const PP = () => {
     useEffect(() => {
         const fetchMatches = async () => {
             try {
-                const response = await axios.get('http://localhost:5001/api/predict');
+                const response = await axios.get('https://golozo-football-predictor-production.up.railway.app/api/predict');
                 if (Array.isArray(response.data)) {
                     setMatches(response.data);
                 } else {
